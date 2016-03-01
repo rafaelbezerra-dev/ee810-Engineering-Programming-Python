@@ -1,6 +1,7 @@
 #!/usr/bin/env python
-import re
+import os, sys
 
+filename = "tr.txt"
 f = open("tr.txt", "r")
 lines = f.readlines()
 f.close()
@@ -19,5 +20,6 @@ while current_line >= 1:
         f = open("DelayValues.txt", "a")
         f.write(ms)
         f.close()
+        os.remove(filename)
         break
     current_line -= 1
