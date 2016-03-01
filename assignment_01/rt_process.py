@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os, sys
 
-filename = "tr.txt"
+filename = "/home/pi/Projects/GitHub/ee810/assignment_01/tr.txt"
 f = open("tr.txt", "r")
 lines = f.readlines()
 f.close()
