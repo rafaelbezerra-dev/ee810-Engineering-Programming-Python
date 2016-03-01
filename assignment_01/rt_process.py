@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 import os, sys
 
-filename = "/home/pi/Projects/GitHub/ee810/assignment_01/tr.txt"
-f = open("tr.txt", "r")
+source = "tr.txt"
+dest = "DelayValues.txt"
+f = open(source, "r")
 lines = f.readlines()
 f.close()
 
@@ -17,7 +18,7 @@ while current_line >= 1:
     if "ms" in words[len(words) - 1]:
         ms = words[len(words) - 1].replace(" ms", "")
         # float_ms = float(ms)
-        f = open("DelayValues.txt", "a")
+        f = open(dest, "a")
         f.write(ms)
         f.close()
         os.remove(filename)
