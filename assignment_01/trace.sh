@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 cd /home/pi/Projects/GitHub/ee810/assignment_01/

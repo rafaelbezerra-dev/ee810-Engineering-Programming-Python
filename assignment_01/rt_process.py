@@ -21,6 +21,6 @@ while current_line >= 1:
         f = open(dest, "a")
         f.write(ms)
         f.close()
-        os.remove(filename)
+        os.remove(source)
         break
     current_line -= 1
