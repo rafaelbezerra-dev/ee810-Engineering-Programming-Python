@@ -20,6 +20,7 @@ while current_line >= 1:
     if "ms" in words[len(words) - 1]:
         # ms = words[len(words) - 1].replace(" ms", "")
         ms = pattern.sub('', words[len(words) - 1])
+	ms += "\n"
         # float_ms = float(ms)
         f = open(dest, "a")
         f.write(ms)
