@@ -2,8 +2,10 @@
 import os, sys
 import re
 
-source = "tr.txt"
-dest = "DelayValues.txt"
+print 'Argument List:', str(sys.argv)
+
+source = str(sys.argv[1])
+dest = str(sys.argv[2])
 pattern = re.compile(r'[^\d.]+')
 f = open(source, "r")
 lines = f.readlines()
@@ -28,3 +30,4 @@ while current_line >= 1:
         os.remove(source)
         break
     current_line -= 1
+
