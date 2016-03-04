@@ -3,6 +3,10 @@
 
 cd /home/pi/Projects/GitHub/ee810/assignment_01/
 
+traceroute -m 20 github.com >> tr_r7.txt
+python process.py tr_r7.txt dt_r7.txt
+python plot_cdf.py dt_r7.txt output/r7.png
+
 traceroute -m 20 github.com >> tr_github.txt
 python process.py tr_github.txt dt_github.txt
 python plot_cdf.py dt_github.txt output/github.png
@@ -22,3 +26,4 @@ python plot_cdf.py dt_infnet.txt output/infnet.png
 traceroute -m 20 unesp.br >> tr_unesp.txt
 python process.py tr_unesp.txt dt_unesp.txt
 python plot_cdf.py dt_unesp.txt output/unesp.png
+
