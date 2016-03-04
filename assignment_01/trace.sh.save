@@ -1,0 +1,7 @@
+
+#!/bin/bash
+
+cd /home/pi/Projects/GitHub/ee810/assignment_01/
+traceroute github.comtr_github.txt >> tr_github.txt
+#chmod +x process.py 
+python process.py
