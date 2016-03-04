@@ -2,8 +2,6 @@
 import os, sys
 import re
 
-print 'Argument List:', str(sys.argv)
-
 source = str(sys.argv[1])
 dest = str(sys.argv[2])
 pattern = re.compile(r'[^\d.]+')
