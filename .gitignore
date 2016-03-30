@@ -62,5 +62,5 @@ target/
 .ipynb_checkpoints
 
 # Media
-.mp3
-.mp4
+*.mp3
+*.mp4
