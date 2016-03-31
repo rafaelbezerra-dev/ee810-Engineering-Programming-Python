@@ -30,6 +30,7 @@ list_player.set_media_list(media_list)
 
 try:
     player.play()
+    player.pause()
     while True:
         pass
 except KeyboardInterrupt:

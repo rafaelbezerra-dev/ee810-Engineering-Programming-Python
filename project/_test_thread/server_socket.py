@@ -34,7 +34,7 @@ if __name__ == "__main__":
 
     server = ThreadedTCPServer((HOST, PORT), ThreadedTCPRequestHandler)
     ip, port = server.server_address
-
+    
     # Start a thread with the server -- that thread will then start one
     # more thread for each request
     server_thread = threading.Thread(name="thr_server", target=server.serve_forever)
