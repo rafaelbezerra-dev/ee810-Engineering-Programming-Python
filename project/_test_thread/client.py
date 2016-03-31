@@ -9,6 +9,10 @@ def send(ip, port, message):
     try:
         sock.sendall(message)
         response = sock.recv(1024)
+        if " " not in response:
+            response += " "
+        status_code, data = response.split(' ', 1)
+        return status_code
         # print "Received: {}".format(response)
     finally:
         sock.close()
