@@ -3,8 +3,7 @@ import sys, time
 import threading, json
 from socket import *
 from Queue import *
-
-DEFAULT_PORT = 8888
+from common import *
 
 class Server:
 	def __init__(self, host='', port=0):
@@ -16,19 +15,17 @@ def listener(lstr, result_queue):
 	print "listener >> creating socket"
 	s = socket(AF_INET, SOCK_STREAM)
 	try:
+		s.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
 		print "listener >> binding to port", lstr.port
 		s.bind((lstr.host, lstr.port))
 		s.setblocking(1)
-		print "listener >> listening"
 		s.listen(1)
-		print "listener >> heard something"
+		print "listener >> listening"
 		conn, addr = s.accept()
 		try:
-			print "Connected by", addr
 			while True:
 				data = conn.recv(1024)
-				if data == 'close':
-					print data
+				if data == CLOSE_MESSAGE:
 					result_queue.put('done')
 					break
 		finally:
@@ -50,7 +47,7 @@ def main():
 		s.close()
 
 		print "Initializing connection listener"
-		lstr = Server('', DEFAULT_PORT + 3)
+		lstr = Server('', DEFAULT_PORT + 1)
 		q = Queue()
 		conn_hdlr = threading.Thread(name="thr_listener", target=listener, args=[lstr, q])
 		conn_hdlr.start()
@@ -62,15 +59,15 @@ def main():
 		pi_host = Server(local_ip_addr, lstr.port)
 
 		for x in range(0, 3000):
-			data = json.dumps(pi_host.__dict__)
-			print data
-			s.sendto(data, ('<broadcast>', DEFAULT_PORT))
 			if not q.empty():
 				data = q.get(True, 2)
 				if data:
 					break
-			else:
-				time.sleep(2)
+
+			data = json.dumps(pi_host.__dict__)
+			print data
+			s.sendto(data, ('<broadcast>', DEFAULT_PORT))
+			time.sleep(2)
 	finally:
 		print "closing main socket"
 		s.close()

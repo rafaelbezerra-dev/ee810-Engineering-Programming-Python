@@ -1,4 +1,5 @@
 from socket import *
+from common import *
 import json
 
 DEFAULT_PORT = 8888
@@ -27,7 +28,7 @@ def main():
 	print server['host']
 	print "Come talk to me!\n"
 
-	send(server['host'], server['port'], 'close')
+	send(server['host'], server['port'], CLOSE_MESSAGE)
 
 
 	return;

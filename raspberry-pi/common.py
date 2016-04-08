@@ -1,0 +1,2 @@
+DEFAULT_PORT = 8888
+CLOSE_MESSAGE = 'close'
