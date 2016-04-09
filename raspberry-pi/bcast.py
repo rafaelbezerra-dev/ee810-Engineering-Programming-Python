@@ -39,6 +39,7 @@ def listener(lstr, result_queue):
 
 
 def main():
+	time.sleep(20)
 	print "retrieving local ip address"	
 	s = socket(AF_INET, SOCK_DGRAM)
 	try:
