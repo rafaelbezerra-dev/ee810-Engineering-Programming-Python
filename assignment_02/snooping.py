@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-# python snooping.py google.com cnn.com g1.globo.com www.r7.com jovemnerd.com.br 9gag.com www.submarino.com.br reddit.com stackoverflow.com
+# python snooping.py -d google.com cnn.com g1.globo.com www.r7.com jovemnerd.com.br 9gag.com www.submarino.com.br reddit.com stackoverflow.com
+# python snooping.py -f domains
 
 import sys, os, time, threading
 from datetime import datetime
