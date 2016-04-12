@@ -46,14 +46,25 @@ def main():
 	run_event = threading.Event()
 	run_event.set()
 	threads = []
-
-	for arg in sys.argv[1:]:
-		# if not arg.startswith(DOM_PREFIX):
-		# 	arg = DOM_PREFIX + arg
-		print 'Starting thread for ', arg
-		tr = threading.Thread(target = run_dig, args = (arg, run_event))
-		threads.append(tr)
-		tr.start()
+	param = sys.argv[1]
+	if param == '-d':
+		for arg in sys.argv[2:]:
+			# if not arg.startswith(DOM_PREFIX):
+			# 	arg = DOM_PREFIX + arg
+			print 'Starting thread for ', arg
+			tr = threading.Thread(target = run_dig, args = (arg, run_event))
+			threads.append(tr)
+			tr.start()
+	elif param == '-f':
+		with open(sys.argv[2], 'r') as f:
+			for line in f.readlines():
+				line = line.replace('\n','')
+				if line:
+					print 'Starting thread for ', line
+					tr = threading.Thread(target = run_dig, args = (line, run_event))
+					threads.append(tr)
+					tr.start()
+		f.close()
 
 	try:
 		while 1:
