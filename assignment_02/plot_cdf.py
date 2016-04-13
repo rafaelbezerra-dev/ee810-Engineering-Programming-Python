@@ -8,7 +8,10 @@ OUTPUT_DIR = 'cdf/'
 
 def main():
 	src = str(sys.argv[1])
-	dest = OUTPUT_DIR + src
+	dest = OUTPUT_DIR + src.replace('.txt', '.png')
+
+	if '.png' not in dest:
+		dest += '.png'
 
 	data = np.loadtxt(src)
 	sorted_data = np.sort(data)
