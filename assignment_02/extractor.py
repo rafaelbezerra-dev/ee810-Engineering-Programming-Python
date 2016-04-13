@@ -9,6 +9,7 @@ OUTPUT_DIR = 'extracted/'
 DATETIME_FORMAT = '%Y-%m-%d %X.%f'
 CACHE_HIT = 'cache hit'
 CACHE_MISS = 'cache miss'
+NORMALIZER = 1000
 
 class Reading():
 	def __init__(self, str_time, cache_status):
@@ -58,8 +59,9 @@ def main():
 		if not temp_r:
 			temp_r = r
 		if temp_r.cache_miss != r.cache_miss:
-			if temp_r.cache_miss:
+			if temp_r.cache_miss:				
 				delta = (r.dt - temp_r.dt).seconds
+				delta = min(NORMALIZER, delta)
 				output += str(delta) + '\n'				
 			temp_r = r
 
@@ -68,6 +70,7 @@ def main():
 		if temp_r.cache_miss:
 			delta = (last_reading.dt - temp_r.dt).seconds
 			if delta > 0:
+				delta = min(NORMALIZER, delta)
 				output += str(delta) + '\n'
 
 	print '\nWriting output to file ' + OUTPUT_DIR + fname
