@@ -22,7 +22,7 @@ def dig(domain):
 	return ans
 
 def append_to_file(fname, content):
-	f = open(fname, "a")
+	f = open(fname, "a+")
 	f.write(content + '\n')
 	f.close()
 	return
@@ -60,11 +60,15 @@ def main():
 		with open(sys.argv[2], 'r') as f:
 			for line in f.readlines():
 				line = line.replace('\n','')
-				if line:
-					print 'Starting thread for ', line
-					tr = threading.Thread(target = run_dig, args = (line, run_event))
-					threads.append(tr)
-					tr.start()
+				if not line:  # line is empty
+					continue
+				if line.startswith('#'): # line is commented
+					continue
+				
+				print 'Starting thread for ', line
+				tr = threading.Thread(target = run_dig, args = (line, run_event))
+				threads.append(tr)
+				tr.start()
 		f.close()
 
 	try:
