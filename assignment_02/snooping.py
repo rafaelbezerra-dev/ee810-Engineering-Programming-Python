@@ -19,7 +19,7 @@ def dig(domain):
 	p = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
 	ans = p.communicate()[0]
 	# print ans
-	return ans
+	return ans			
 
 def append_to_file(fname, content):
 	f = open(fname, "a+")
