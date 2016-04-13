@@ -39,21 +39,12 @@ def write_to_file(fname, content):
 
 def show_progress(count, n_lines):
 	percent = (count * 100 / n_lines)
-	sys.stdout.write('\rProcessing line %d of %d [%d%]' % (count, n_lines, percent))
+	out = 'Processing line %d of %d [%d%s]' % (count, n_lines, percent, '%')
+	sys.stdout.write("\r" + out)
+	sys.stdout.flush()
 
 def main():
-
-	for i in range(1,20):
-		out = str(i) + ' [' + str(i*100/20)+ '%]'
-		sys.stdout.write("\r" + out)
-		sys.stdout.flush()
-		sleep(1)
-	stdout.write("\n")
-	return 
-	# dt = datetime.now()
-	# sleep(.5)
-	# print (datetime.now() - dt).seconds
-	# pass
+	print ''
 	output = ''
 	fname = sys.argv[1]
 	readings = read_from_file(fname)
@@ -78,8 +69,10 @@ def main():
 			delta = (last_reading.dt - temp_r.dt).seconds
 			if delta > 0:
 				output += str(delta) + '\n'
-	write_to_file(fname, output)
 
+	print '\nWriting output to file ' + OUTPUT_DIR + fname
+	print ''
+	write_to_file(fname, output)
 
 
 

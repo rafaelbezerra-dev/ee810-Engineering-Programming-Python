@@ -4,9 +4,11 @@ import os, sys
 import numpy as np
 import matplotlib.pyplot as plt
 
+OUTPUT_DIR = 'cdf/'
+
 def main():
 	src = str(sys.argv[1])
-	dest = str(sys.argv[2])
+	dest = OUTPUT_DIR + src
 
 	data = np.loadtxt(src)
 	sorted_data = np.sort(data)
@@ -14,6 +16,10 @@ def main():
 
 	plt.title(src[:src.rfind('.')].upper())
 	plt.plot(sorted_data,yvals)
+
+	if not os.path.exists(OUTPUT_DIR):
+		os.makedirs(OUTPUT_DIR)
+
 	plt.savefig(dest)
 
 
