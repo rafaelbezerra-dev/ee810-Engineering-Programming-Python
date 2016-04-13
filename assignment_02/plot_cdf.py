@@ -7,8 +7,13 @@ import matplotlib.pyplot as plt
 OUTPUT_DIR = 'cdf/'
 
 def main():
+	# for src in sys.argv[1:] :
+		
 	src = str(sys.argv[1])
 	dest = OUTPUT_DIR + src.replace('.txt', '.png')
+	print ''
+	print 'ploting ' + src		
+	
 
 	if '.png' not in dest:
 		dest += '.png'
@@ -23,6 +28,8 @@ def main():
 	if not os.path.exists(OUTPUT_DIR):
 		os.makedirs(OUTPUT_DIR)
 
+	print 'saving plot to file ' + dest
+	print ''
 	plt.savefig(dest)
 
 

@@ -8,7 +8,7 @@ from matplotlib.legend_handler import HandlerLine2D
 
 OUTPUT_DIR = 'cdf/'
 COLORS = [
-	'yellow',
+	# 'yellow',
 	'magenta',
 	'cyan',
 	'red',
